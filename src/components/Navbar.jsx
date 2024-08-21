@@ -1,12 +1,9 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.jpg";
-import { useState } from "react";
+import { products_use } from "../page/Context";
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
-  function toggleHandler() {
-    setToggle(!toggle);
-  }
+  const { toggle, toggleHandler } = products_use();
   return (
     <div className="navbar">
       <div>
@@ -30,16 +27,23 @@ const Navbar = () => {
       </span>
       <ul className={toggle ? "active" : null}>
         <li>
-          <NavLink className="nav-link">Home</NavLink>
+          <NavLink className="nav-link" onClick={toggleHandler} to="/">
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink className="nav-link">Service</NavLink>
+          <NavLink
+            to="accessories"
+            className="nav-link"
+            onClick={toggleHandler}
+          >
+            Accessories
+          </NavLink>
         </li>
         <li>
-          <NavLink className="nav-link">Accessories</NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-link">About</NavLink>
+          <NavLink className="nav-link" onClick={toggleHandler} to="about">
+            About
+          </NavLink>
         </li>
       </ul>
     </div>
